@@ -73,12 +73,18 @@ bot.on('photo', async (msg) => {
               fetch(urlGoogle)
                 .then((response) => response.json())
                 .then(async (dataGoogle) => {
-                  const searchGoogle1 = dataGoogle.items[0].link;
-                  const searchGoogle2 = dataGoogle.items[1].link;
-                  const searchGoogle3 = dataGoogle.items[2].link;
-                  await bot.sendMessage(chatId, `🍀🍀🍀Узнать больше про уход (TOP 1 GOOGLE 🇷🇺): ${searchGoogle1}`);
-                  await bot.sendMessage(chatId, `🍀🍀Узнать больше про уход (TOP 2 GOOGLE 🇷🇺): ${searchGoogle2}`);
-                  await bot.sendMessage(chatId, `🍀Узнать больше про уход (TOP 3 GOOGLE 🇷🇺): ${searchGoogle3}`);
+                  const searchGoogle1 = dataGoogle.items[0]?.link;
+                  const searchGoogle2 = dataGoogle.items[1]?.link;
+                  const searchGoogle3 = dataGoogle.items[2]?.link;
+                  if (searchGoogle1) {
+                    await bot.sendMessage(chatId, `🍀🍀🍀Узнать больше про уход (TOP 1 GOOGLE 🇷🇺): ${searchGoogle1}`);
+                  }
+                  if (searchGoogle2) {
+                    await bot.sendMessage(chatId, `🍀🍀Узнать больше про уход (TOP 2 GOOGLE 🇷🇺): ${searchGoogle2}`);
+                  }
+                  if (searchGoogle3) {
+                    await bot.sendMessage(chatId, `🍀Узнать больше про уход (TOP 3 GOOGLE 🇷🇺): ${searchGoogle3}`);
+                  }
                 })
                 .catch((error) => {
                   console.error('Error:', error);
